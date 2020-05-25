@@ -1,0 +1,14 @@
+version: '3'
+services: 
+    db:
+        build: 
+            dockerfile: Dockerfile.dev
+            context: .
+        ports: 
+            - "5432:5432" 
+    app:
+        build: .
+        depends_on: 
+            - db
+        ports: 
+           - "5000:80"
