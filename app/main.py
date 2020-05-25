@@ -3,8 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
-print("het")
-app.config["SQLALCHEMY_DATABASE_URI"]= "postgresql://postgres:morgan@127.0.0.1:5432/ims"
+# the port , use the name of the service from docker-compose file
+app.config["SQLALCHEMY_DATABASE_URI"]= "postgresql://postgres:password@db:5432/ims" 
 app.config["SECRET_KEY"]= 'knkn'
 
 
@@ -20,16 +20,18 @@ class Test(db.Model):
 
 @app.route("/")
 def hone():
-    this=Test(name="morgan")
+    this=Test(name="test")
     db.session.add(this)
     db.session.commit()
-    # q
+
     data = Test.query.first()
-    print(data.name)
+    x= Test.query.all()
+    for r in x:
+        print(r.name)
     return data.name
 
 @app.route("/t")
-def hon():
+def greet():
     return "hey"
 
 

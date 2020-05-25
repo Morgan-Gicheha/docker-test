@@ -12,3 +12,6 @@ services:
             - db
         ports: 
            - "5000:80"
+        volumes: 
+            - /app/env
+            - ./app:/app
