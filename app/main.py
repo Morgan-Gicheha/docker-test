@@ -4,7 +4,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 # the port , use the name of the service from docker-compose file
-app.config["SQLALCHEMY_DATABASE_URI"]= "postgresql://postgres:password@db:5432/ims" 
+# app.config["SQLALCHEMY_DATABASE_URI"]= "postgresql://postgres:password@db:5432/ims" 
+app.config["SQLALCHEMY_DATABASE_URI"]= "sqlite:///ims.db" 
 app.config["SECRET_KEY"]= 'knkn'
 
 
@@ -20,7 +21,7 @@ class Test(db.Model):
 
 @app.route("/")
 def hone():
-    this=Test(name="test")
+    this=Test(name="test datase")
     db.session.add(this)
     db.session.commit()
 
